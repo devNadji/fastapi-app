@@ -30,8 +30,9 @@ def check_username(username: str):
         "username": username,
     }
     TARGET_URL = random.choice(f)
+    ip = session.post("https://api.myip.com/")
     try:
         resp = session.post(TARGET_URL, data=payload)
-        return resp.json()  # يرجع JSON مباشر
+        return {"Result":resp.json(), "Ip":ip.json()}  # يرجع JSON مباشر
     except Exception as e:
         return {"error": str(e)}
